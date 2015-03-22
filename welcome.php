@@ -455,6 +455,15 @@
         <hr>
 	            <div class = "Transportation From Base"></div>
 	              <div class = "col-xs-12 col-md-6 col-sm-4">
+	              	<h5>Incident Time</h5>
+	              	<input type = "text" name = "IncidentTime" id = "datepicker">
+	              	<h5>On Scene Time</h5>
+	              	<input type = "text" name = "OnSceneTime" id = "datepicker2">
+	              	<h5>Transport Time</h5>
+	              	<input type = "text" name = "TransportTime" id = "datepicker3">
+	              </div>
+
+	              <div class = "col-xs-12 col-md-6 col-sm-4">
 	                <h5>Transport From Base</h5>
 	                  <select class="form-control" name="selectTransport">
 					  	<option>Please select</option>
@@ -654,7 +663,7 @@
 		                  <p>Witness/p>
 		                	<input type = "text" name = "witness">
 		                  <p>Date</p>
-		                  	<input type = "date" name = "fillInDate">
+		                  	<input type = "date" name = "fillInDate" id="datepicker4">
 		           	 </div>
 				</div>
         <h1>&nbsp;</h1>
@@ -671,6 +680,12 @@
         </form>
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<!--the next 5 files are for the date picker-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script type="text/javascript" src = "js/custom.js"></script>
 </body>
 
 
