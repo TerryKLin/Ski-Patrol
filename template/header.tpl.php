@@ -22,18 +22,11 @@
 	 				<a href="index.php" class="navbar-brand"><img src="images/CSP.jpg" alt="Canadian Ski Patrol" style="height:30px; margin-bottom:10px;"></a>
 	 			</div>
 	 			<?php
-	 			if($_SESSION['u_data']['u_level'] == 1){
+	 			if($_SESSION['u_data']['u_level'] == '5'){
 	 			?>
 	 			<ul class="nav navbar-nav navbar-right">
-	 				<li><a href="index.php">Welcome, <?php echo $_SESSION['u_data']['u_username'];?></a></li>
+	 				<li><a href="index.php">Welcome, <?php echo $_SESSION['u_data']['u_name'];?></a></li>
 	 				<li><a href="listing.php">User Listing</a></li>
-	 				<li><a href="logout.php">Logout</a></li>
-	 			</ul>
-	 			<?php
-	 			}elseif($_SESSION['u_data']['u_level']>1){
-	 			?>
-	 			<ul class="nav navbar-nav navbar-right">
-	 				<li><a href="index.php">Welcome, <?php echo $_SESSION['u_data']['u_username'];?></a></li>
 	 				<li><a href="logout.php">Logout</a></li>
 	 			</ul>
 	 			<?php 

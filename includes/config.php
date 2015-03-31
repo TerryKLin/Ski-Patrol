@@ -1,8 +1,6 @@
 <?php
    session_name("SKI_PATROL");
    session_start();
-    
-    date_default_timezone_set("America/Halifax");
 
 	$db_host = 'localhost';
 	$db_user = 'skipatrol';

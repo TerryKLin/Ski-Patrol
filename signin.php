@@ -3,16 +3,25 @@
    require_once("includes/dbmanager.php");
    require_once("includes/helper.php");
    require_once("includes/alert.php");
-   session_name("SKI_PATROL");
-   session_start();
+   
      if(isset($_POST['submit_login'])){
-      if(isset($_POST['username'])&&isset($_POST['password'])){
-        $userinfo = validate_user_info($_POST['username']);
+      if(isset($_POST['CSPNumber'])&&isset($_POST['password'])&&isset($_POST['email']) && isset($_POST['Name'])){
+
+        $userinfo = validate_user_info($_POST['CSPNumber']);
+        
         if(!empty($userinfo)){
+          echo $userinfo['password'];
+          echo "<br>";
+          echo $_POST['password'];
+          echo "<br>";
+          echo hash("sha256",$_POST['password']);
           if($userinfo['password'] == sha1($_POST['password'])){
-           $_SESSION['u_data']['u_username'] = $userinfo['username'];
+            $_SESSION['u_data']['u_name'] = $userinfo['name'];
+            $_SESSION['u_data']['u_CSPNumber'] = $userinfo['csp_no'];
             $_SESSION['u_data']['u_password'] = $userinfo['password'];
-            $_SESSION['u_data']['u_level'] = $userinfo['level'];
+            $_SESSION['u_data']['u_email'] = $userinfo['email'];
+            $_SESSION['u_data']['u_level']= $userinfo['level'];
+            set_alerts("success","Successfully login.");
             redirect("index.php");
           }else{
             set_alerts("danger","wrong password");
@@ -41,11 +50,22 @@
           <div class="panel-body">  
 
             <form action="signin.php" method="post" class="form-horizontal">
-
             <div class="form-group">        
-              <label for="username" class="col-sm-4 control-label">Username:</label> 
+              <label for="Name" class="col-sm-4 control-label">Name</label> 
               <div class="col-sm-8">
-                <input type="text" name="username" id="username" autofocus autocomplete="off">
+                <input type="text" name="Name" id="Name" autofocus autocomplete="off">
+              </div>
+            </div>
+            <div class="form-group">        
+              <label for="CSPNumber" class="col-sm-4 control-label">CSP Number:</label> 
+              <div class="col-sm-8">
+                <input type="text" name="CSPNumber" id="CSPNumber" autofocus autocomplete="off">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email" class="col-sm-4 control-label">Email:</label>
+              <div class="col-sm-8">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email">
               </div>
             </div>
             <div class="form-group">  
