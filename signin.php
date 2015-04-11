@@ -5,21 +5,21 @@
    require_once("includes/alert.php");
    
      if(isset($_POST['submit_login'])){
-      if(isset($_POST['CSPNumber'])&&isset($_POST['password'])&&isset($_POST['email']) && isset($_POST['Name'])){
+      if(isset($_POST['CSPNumber'])&&isset($_POST['password'])&& isset($_POST['Name'])){
 
         $userinfo = validate_user_info($_POST['CSPNumber']);
         
         if(!empty($userinfo)){
-          echo $userinfo['password'];
-          echo "<br>";
-          echo $_POST['password'];
-          echo "<br>";
-          echo hash("sha256",$_POST['password']);
+          //echo $userinfo['password'];
+          //echo "<br>";
+          //echo $_POST['password'];
+          //echo "<br>";
+          //echo hash("sha256",$_POST['password']);
           if($userinfo['password'] == sha1($_POST['password'])){
             $_SESSION['u_data']['u_name'] = $userinfo['name'];
             $_SESSION['u_data']['u_CSPNumber'] = $userinfo['csp_no'];
             $_SESSION['u_data']['u_password'] = $userinfo['password'];
-            $_SESSION['u_data']['u_email'] = $userinfo['email'];
+            //$_SESSION['u_data']['u_email'] = $userinfo['email'];
             $_SESSION['u_data']['u_level']= $userinfo['level'];
             set_alerts("success","Successfully login.");
             redirect("index.php");
@@ -62,12 +62,7 @@
                 <input type="text" name="CSPNumber" id="CSPNumber" autofocus autocomplete="off">
               </div>
             </div>
-            <div class="form-group">
-              <label for="email" class="col-sm-4 control-label">Email:</label>
-              <div class="col-sm-8">
-                <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email">
-              </div>
-            </div>
+            
             <div class="form-group">  
               <label for="password" class="col-sm-4 control-label">Password:</label>
               <div class="col-sm-8">

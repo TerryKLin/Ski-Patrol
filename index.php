@@ -3,14 +3,33 @@
    require_once("includes/alert.php");
    require_once("includes/helper.php");
    require_once('includes/config.php');
-   require_once('incldues/dbmanager.php');
+   require_once('includes/dbmanager.php');
 
 
-	
-	
    
-   echo display_alert();
-   if($_SESSION['u_data']['u_level'] == 5){
+   if($_SESSION['u_data']['u_level'] == '5'){
+
+
+   	if($_POST['accidentNumber'] != "" && $_POST['patrollersNum1'] != "" && $_POST['incidentDate'] != "")
+   	{	
+   		if(isset($_POST['Submit_Button'])){
+	   	  	
+   			insertion($_POST['accidentNumber'],$_POST['patrollersNum1'],$_POST['incidentDate'],$_POST['onSceneTime'],$_POST['transportTime'], $_POST['incidentDate'],$_POST['accidentLocation'], $_POST['SkierInfo'],$_POST['gender'],$_POST['accidentLocation'],$_POST['runClassfication'],$_POST['activity'],$_POST['involvement'],$_POST['weather'],$_POST['lighting'],$_POST['temp'],$_POST['snow'],$_POST['surface'],$_POST['equipment'],$_POST['bindingRelease'],$_POST['transportToFirstAid'],$_POST['collision'],$_POST['collisionInfo'],$_POST['nonCollision'],$_POST['liftRelated'],$_POST['nonSkiingRelated'],$_POST['transportFromBase'],$_POST['transportDestination'],$_POST['formCompletedBy'],$_POST['incidentType'],$_POST['injuredArea'],$_POST['injuredSide'],$_POST['fillInDate']);
+   			//Your form has been submitted
+	
+   		}else{
+   			redirect("signin.php");
+   		}
+   	}
+   	else
+   	{
+		set_alerts("danger", "Please fill in the required fields before submitting");
+	
+	}
+
+ 	  echo display_alert();
+
+
 ?>
   
 
@@ -20,13 +39,13 @@
 	    <div class = "Skier Info"></div>
 		    <div class = "col-xs-12 col-md-6 ">	
 				<h5>Skier's Age</h5>
-				<input type = "number" name = "SkierInfo">
+				<input type = "number" name = "SkierInfo" required>
 			</div>    
 
 		<div class = "Skier Gender"></div>
 		    <div class = "col-xs-12 col-md-6 "> 				
 				<h5>Skier's Gender</h5>
-					<select class="Skier info" name="gender">
+					<select class="Skier info" name="gender" required>
 						<option>Select</option>
 						<option>Female</option>
 						<option>Male</option>
@@ -39,7 +58,7 @@
 	    <div class = "Accident Number"></div>
 			<div class = "col-xs-12 col-md-6 ">
 				<h5>Accident Number</h5>
-				<input type = "number" name = "accidentNumber">
+				<input type = "number" name = "accidentNumber" required>
 	        </div>
 
 	        <div class = "Accident Date"></div>
@@ -286,21 +305,21 @@
 
 
 		<div class="Collision"></div>
-		<div class = "col-xs-12 col-md-6">
-		    <h5>Collision</h5>
-		    <select class="form-control" name="collision">
-		    	<option>Select</option>
-		    	<option>Yes</option>
-		    	<option>No</option>
-		    </select>
-		</div>
+			<div class = "col-xs-12 col-md-6">
+			    <h5>Collision</h5>
+			    <select class="form-control" name="collision">
+			    	<option>Select</option>
+			    	<option>Yes</option>
+			    	<option>No</option>
+			    </select>
+			</div>
 
 
 		<div class="Collision Information"></div>
-		<div class="col-xs-12 col-md-6">
-			<h5>Collision Information</h5>
-			<input type="text" name="collisionInfo" class="collisionInfo">
-		</div>
+			<div class="col-xs-12 col-md-6">
+				<h5>Collision Information</h5>
+				<input type="text" name="collisionInfo" class="collisionInfo">
+			</div>
 
 		<div class = "Run Type"></div>
 			<div class = "col-xs-12 col-md-6 ">
@@ -328,12 +347,12 @@
 	    <hr>
 		<div class = "Accident Detail"></div>
 		    <div class = "col-xs-12 col-md-6 ">
-		       <h5>Incident Time</h5>
-		       <input type = "date" name = "incidentTime" id = "datepicker">
-		       <h5>On Scene Time</h5>
-		       <input type = "date" name = "onSceneTime" id = "datepicker2">
-		       <h5>Transport Time</h5>
-		       <input type = "date" name = "transportTime" id = "datepicker3">
+		       	<h5>Incident Time</h5>
+		       		<input type = "time" name = "incidentTime" id = "datepicker">
+		       	<h5>On Scene Time</h5>
+		       		<input type = "time" name = "onSceneTime" id = "datepicker2">
+		       	<h5>Transport Time</h5>
+		       		<input type = "time" name = "transportTime" id = "datepicker3">
 		   	</div>
 
 		<div class = "Transportation From Base"></div>
@@ -445,38 +464,44 @@
 	    <h1>Patroller  Information</h1>
 	    <hr>
 	    <div class = "Patroller Information"></div>
-			<div class = "col-xs-12 col-md-6 ">
+			<div class = "col-xs-4 col-md-4 ">
 			    <p>Patroller's Name</p>
 			        <input type = "text" name = "patrollersName1">
 			    <p>Patroller's Number</p>
-			        <input type = "number" name = "patrollersNum1">
+			        <input type = "number" name = "patrollersNum1">     
+			</div>
+			<!--
+			<div class = "col-xs-4 col-md-4 ">
 			    <p>Patroller's Name</p>
 			        <input type = "text" name = "patrollersName2">
 			    <p>Patroller's Number</p>
-			        <input type = "number" name = "patrollersNum2">
+			        <input type = "number" name = "patrollersNum2">   
+			</div>
+			<div class = "col-xs-4 col-md-4 ">
 			    <p>Patroller's Name</p>
 			        <input type = "text" name = "patrollersName3">
 			    <p>Patroller's Number</p>
-			        <input type = "number" name = "patrollersNum3">      
-			</div>
-		<div class="row col-md-12">
-	   	<h1>&nbsp;</h1>
-	    <h2>Signature</h2>
-	    <hr>
+			        <input type = "number" name = "patrollersNum3">   
+			</div>-->
 
+			<h1>&nbsp;</h1>
+			<h1>&nbsp;</h1>
+
+
+		<h2>Signature</h2>
+		<hr>
 	    <div class = "Signature"></div>
 			<div class = "col-xs-12 col-md-6 ">
 			    <p>Form completed by</p>
 			       <input type = "text" name = "formCompletedBy">
 			    <p>Date</p>
 			        <input type = "date" name = "fillInDate" id="datepicker4">
-		</div>
-		</div>
+			</div>
 					
+	    
 					
 		<h1>&nbsp;</h1>
-	    <div class="col-md-12 row"></div>
-		<div class="form-group col-md-offset-6 col-md-4" style="margin-top:10px;">
+		<div class="center-block" style="margin-top:10px;">
 			   <label class="col-md-4 control-label" for="submit_Button"></label>
 			   		<div class="col-xs-12 center-block">
 			            	<button id="submit_Button" name="Submit_Button" class="btn btn-primary center-block">
@@ -488,15 +513,9 @@
 			</form>
 			
 
-<?php
-   }
-   if(isset($_POST['Submit_Button'])){
-	   	  	
-   	insertion($_POST['accidentNumber'],$_POST['patrollersNum1'],$_POST['patrollersNum2'],$_POST['patrollersNum3'],$_POST['incidentDate'],$_POST['onSceneTime'],$_POST['transportTime'], $_POST['incidentDate'],$_POST['resort'], $_POST['SkierInfo'],$_POST['gender'],$_POST['accidentLocation'],$_POST['runClassfication'],$_POST['activity'],$_POST['involvement'],$_POST['weather'],$_POST['lighting'],$_POST['temp'],$_POST['snow'],$_POST['surface'],$_POST['equipment'],$_POST['bindingRelease'],$_POST['transportToFirstAid'],$_POST['collision'],$_POST['collisionInfo'],$_POST['nonCollision'],$_POST['liftRelated'],$_POST['nonSkiingRelated'],$_POST['tranpsortFormBase'],$_POST['transportDestination'],$_POST['formCompletedBy'],$_POST['incidentType'],$_POST['injuredArea'],$_POST['fillInDate']);
-   
-   }else{
-   	redirect("signin.php");
-   }
+<?php 
+  }
+
    require_once("template/footer.tpl.php");
    require_once("includes/clean.php");
 ?>

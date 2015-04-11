@@ -8,14 +8,16 @@
     
      if(isset($_POST['submit_register'])){
        
-          if(isset($_POST['CSPNumber'])&& isset($_POST['password']) && isset($_POST['email'])&&strlen($_POST['email']) > 0&& strlen($_POST['password']) > 0 &&isset($_POST['Name'])){
+          if(isset($_POST['CSPNumber'])&& isset($_POST['password']) && strlen($_POST['password']) > 0 &&isset($_POST['Name'])){
+              //&&strlen($_POST['email']) > 0
                 if($_POST['password'] == $_POST['re_password']){
                       $player_info = validate_user_info($_POST['CSPNumber']);
                       if(isset($player_info)!=0){
                         set_alerts('danger', 'This user already exists. Please try another username.');
                       }else{
                          
-                        create_newuser_account($_POST['Name'],$_POST['CSPNumber'],sha1($_POST['password']),$_POST['email'],5);
+                        create_newuser_account($_POST['Name'],$_POST['CSPNumber'],sha1($_POST['password']),5);
+                        //,$_POST['email']
                         set_alerts('success', 'User created. Please proceed to login.');
                         redirect("signin.php");
                         }
@@ -62,12 +64,7 @@
                 <input type="text" name="CSPNumber" id="CSPNumber" autofocus autocomplete="off">
               </div>
             </div>
-            <div class="form-group">
-              <label for="email" class="col-sm-4 control-label">Email:</label>
-              <div class="col-sm-8">
-                <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email">
-              </div>
-            </div>
+            
             <div class="form-group">  
               <label for="password" class="col-sm-4 control-label">Password:</label>
               <div class="col-sm-8">

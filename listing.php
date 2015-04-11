@@ -4,13 +4,13 @@
    require_once("includes/dbmanager.php");
    session_name("SKI_PATROL");
    session_start();
-   if(isset($_POST['u_id'])){
-   	if($_POST['u_id'] != 1){
+   if(isset($_POST['csp_no'])){
+   	if($_POST['csp_no'] != 1){
    	
-   		delete_from_table($_POST['u_id'] );
+   		delete_from_table($_POST['csp_no'] );
    	}
    }
-   if($_SESSION['u_data']['u_level'] ==1 ){
+   if($_SESSION['u_data']['u_level'] =='5' ){
     $user_data = all_user_info();
 ?>
 
@@ -23,16 +23,17 @@
             <form action="listing.php" method="post">
 			<table class="table table-hover table-bordered">
 			<thead>
-			<tr><th>Username</th><th>Password</th><th>Operation</th></tr>
+			<tr><th>CSPNumber</th><th>Name</th><th>Email</th><th>Action</th></tr>
 			</thead>
 			<tbody>
 			<?php
 
 				while($row=mysqli_fetch_assoc($user_data)){
 		          		echo "<tr style='border-bottom : 1px solid $ececec;'>";
-		          		echo "<td>".$row['username']."</td>";
-		          		echo "<td>".$row['password']."</td>";
-		          		echo "<td><form action='listing.php' method='post'><input name='u_id' type='hidden' value='{$row['u_id']}'><button type='submit' class='btn btn-link'>Delete</button></form></td>";
+		          		echo "<td>".$row['csp_no']."</td>";
+		          		echo "<td>".$row['name']."</td>";
+                  echo "<td>".$row['email']."</td>";
+		          		echo "<td><form action='listing.php' method='post'><input name='csp_no' type='hidden' value='{$row['csp_no']}'><button type='submit' class='btn btn-link'>Delete</button></form></td>";
 		          		echo "</tr>";
 		          	}
 				
