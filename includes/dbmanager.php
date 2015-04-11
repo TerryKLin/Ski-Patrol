@@ -44,13 +44,11 @@
         $query .= ")";
         $result = mysqli_query($link, $query);
      }
-     function insertion($accidentNumber, $patrollersNum1,$incidentDate, $onSceneTime, $transportTime, $incidentTime, $accidentLocation, $skierInfo, $gender, $accidentLocation, $runClassification, $activity, $involvement, $weather, $lighting, $temp, $snow, $surface, $equipment, $bindingRelease, $transportToFirstAid, $collision, $collisionInfo, $nonCollision, $liftRelated, $nonSkiingRelated, $transportFromBase, $transportDestination, $formCompletedBy, $incidentType, $injuredArea,$injuredSide, $fillInDate){
+     function insertion($accidentNumber, $patrollersNum1,$incidentDate, $onSceneTime, $transportTime, $incidentTime, $accidentLocation, $skierInfo, $gender, $accidentLocation, $runClassification, $activity, $involvement, $weather, $lighting, $temp, $snow, $surface, $equipment, $bindingRelease, $transportToFirstAid, $collision, $collisionInfo, $nonCollision, $liftRelated, $nonSkiingRelated, $transportFromBase, $transportDestination, $formCompletedBy, $incidentType, $injuredArea,$injuredSide,$other_Injured_Area, $fillInDate){
         global $link;
         $query = "INSERT INTO report SET ";
         $query .= "accident_no = '".mysqli_real_escape_string($link,$accidentNumber)."',";
         $query .= "csp_no = '".mysqli_real_escape_string($link, $patrollersNum1)."',";
-        //$query .= "csp_no2 = '".mysqli_real_escape_string($link, $patrollersNum2)."',";
-        //$query .= "csp_no3 = '".mysqli_real_escape_string($link, $patrollersNum3)."',";
         $query .= "accident_date = '".mysqli_real_escape_string($link, $incidentDate)."',";
         $query .= "scene_time = '".mysqli_real_escape_string($link, $onSceneTime)."',";
         $query .= "transport_time = '".mysqli_real_escape_string($link, $transportTime)."',";
@@ -81,6 +79,7 @@
         $query .= "type = '".mysqli_real_escape_string($link, $incidentType)."',";
         $query .= "injured_area = '".mysqli_real_escape_string($link, $injuredArea)."',";
         $query .= "injury_side = '".mysqli_real_escape_string($link, $injuredSide)."',";
+        $query .= "other_injured_areas = '".mysqli_real_escape_string($link, $other_Injured_Area)."',";
         $query .= "signature_date = '".mysqli_real_escape_string($link, $fillInDate)."'";
         $result = mysqli_query($link, $query);
 

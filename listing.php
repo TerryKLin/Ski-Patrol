@@ -17,13 +17,13 @@
 
     <div class="panel panel-default" style="clear: both;">
           <div class="panel-heading">
-            <h2 class="panel-title">User Managerment</h2>
+            <h2 class="panel-title">User Management</h2>
           </div>
           <div class="panel-body">  
             <form action="listing.php" method="post">
 			<table class="table table-hover table-bordered">
 			<thead>
-			<tr><th>CSPNumber</th><th>Name</th><th>Email</th><th>Action</th></tr>
+			<tr><th>CSPNumber</th><th>Name</th><th>Action</th></tr>
 			</thead>
 			<tbody>
 			<?php
@@ -32,7 +32,6 @@
 		          		echo "<tr style='border-bottom : 1px solid $ececec;'>";
 		          		echo "<td>".$row['csp_no']."</td>";
 		          		echo "<td>".$row['name']."</td>";
-                  echo "<td>".$row['email']."</td>";
 		          		echo "<td><form action='listing.php' method='post'><input name='csp_no' type='hidden' value='{$row['csp_no']}'><button type='submit' class='btn btn-link'>Delete</button></form></td>";
 		          		echo "</tr>";
 		          	}

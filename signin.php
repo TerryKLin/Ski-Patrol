@@ -10,19 +10,14 @@
         $userinfo = validate_user_info($_POST['CSPNumber']);
         
         if(!empty($userinfo)){
-          //echo $userinfo['password'];
-          //echo "<br>";
-          //echo $_POST['password'];
-          //echo "<br>";
-          //echo hash("sha256",$_POST['password']);
           if($userinfo['password'] == sha1($_POST['password'])){
             $_SESSION['u_data']['u_name'] = $userinfo['name'];
             $_SESSION['u_data']['u_CSPNumber'] = $userinfo['csp_no'];
             $_SESSION['u_data']['u_password'] = $userinfo['password'];
-            //$_SESSION['u_data']['u_email'] = $userinfo['email'];
             $_SESSION['u_data']['u_level']= $userinfo['level'];
             set_alerts("success","Successfully login.");
             redirect("index.php");
+            echo "hi";
           }else{
             set_alerts("danger","wrong password");
           }

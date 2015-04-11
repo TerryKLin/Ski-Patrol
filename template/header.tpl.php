@@ -1,5 +1,6 @@
 <?php
    require_once("includes/alert.php");
+   // require_once("../logout.php");
    session_name("SKI_PATROL");
    session_start();
 ?>
